@@ -1,13 +1,14 @@
-# Instrucciones para el agente
+# Instrucciones globales para el agente
 
-## Contexto
+## Contexto del proyecto
 
-Leer los siguientes ficheros para obtener contexto completo del proyecto:
+Leer `context/coding-conventions.md` cuando la tarea requiera contexto sobre las convenciones del proyecto.
 
-- @context/current-feature.md
-- @context/current-feature-file-spec.md
-- @context/feature-workflow.md
-- @context/coding-conventions.md
+## Workflow de features
+
+Cuando la tarea implique iniciar, implementar, verificar o finalizar una feature, un GitHub Issue o `context/current-feature.md`, cargar el skill `feature-workflow` y los ficheros de contexto que este indique.
+
+No cargar el workflow de features para tareas no relacionadas.
 
 ## GitHub
 
