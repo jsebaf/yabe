@@ -12,8 +12,23 @@ class ApiRoutesTest extends TestCase
 
         $response->assertOk()
             ->assertJsonCount(2)
+            ->assertJsonStructure([
+                '*' => [
+                    'name',
+                    'code',
+                    'room_types' => [
+                        '*' => [
+                            'room_type' => ['name', 'code', 'maxOccupancy'],
+                            'quantity',
+                            'price',
+                        ],
+                    ],
+                ],
+            ])
             ->assertJsonPath('0.code', 'GRAND')
-            ->assertJsonPath('0.room_types.0.room_type.code', 'STANDARD');
+            ->assertJsonPath('0.room_types.0.room_type.code', 'STANDARD')
+            ->assertJsonPath('0.room_types.0.quantity', 20)
+            ->assertJsonPath('0.room_types.0.price', 95);
     }
 
     public function test_get_room_types_returns_ok(): void
@@ -22,6 +37,9 @@ class ApiRoutesTest extends TestCase
 
         $response->assertOk()
             ->assertJsonCount(3)
+            ->assertJsonStructure([
+                '*' => ['name', 'code', 'maxOccupancy'],
+            ])
             ->assertJsonPath('0.code', 'STANDARD')
             ->assertJsonPath('1.maxOccupancy', 3);
     }
