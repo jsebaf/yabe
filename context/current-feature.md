@@ -6,6 +6,8 @@
 
 ## Histórico
 
+- 2026-09-17: Implementada y publicada la interfaz React de consulta de disponibilidad en el Pull Request #19.
+
 - 2026-09-17: Sustituido el servicio mock por persistencia Eloquent, con migraciones, seeders y pruebas actualizadas; creado el Pull Request #18.
 
 - 2026-09-16: Implementada y verificada la consulta de disponibilidad con filtros, capacidad, inventario, solapamiento de bookings y precios.
