@@ -20,6 +20,6 @@ class RoomType extends Model
 
     public function hotels(): HasMany
     {
-        return $this->hasMany(HotelRoomType::class);
+        return $this->hasMany(HotelRoomType::class, 'room_type_id');
     }
 }

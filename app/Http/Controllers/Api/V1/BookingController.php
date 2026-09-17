@@ -3,15 +3,15 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Services\MockDataService;
+use App\Services\DataService;
 use Illuminate\Http\JsonResponse;
 
 class BookingController extends Controller
 {
-    public function __construct(private readonly MockDataService $mockDataService) {}
+    public function __construct(private readonly DataService $dataService) {}
 
     public function store(): JsonResponse
     {
-        return response()->json($this->mockDataService->bookings()->first(), 201);
+        return response()->json($this->dataService->bookings()->first(), 201);
     }
 }
