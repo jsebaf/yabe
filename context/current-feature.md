@@ -6,6 +6,10 @@
 
 ## Histórico
 
+- 2026-09-17: Finalizada la implementación y verificación del servidor MCP local; publicada en el Pull Request #20.
+
+- 2026-09-17: Implementado y verificado el servidor MCP local en Python con herramientas simuladas, transporte `stdio`, logging y documentación.
+
 - 2026-09-17: Implementada y publicada la interfaz React de consulta de disponibilidad en el Pull Request #19.
 
 - 2026-09-17: Sustituido el servicio mock por persistencia Eloquent, con migraciones, seeders y pruebas actualizadas; creado el Pull Request #18.
