@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Api\V1;
 
 use App\Http\Controllers\Controller;
-use App\Services\MockDataService;
+use App\Services\DataService;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 
 class AvailabilityController extends Controller
 {
-    public function __construct(private readonly MockDataService $mockDataService) {}
+    public function __construct(private readonly DataService $dataService) {}
 
     public function check(Request $request): JsonResponse
     {
@@ -24,7 +24,7 @@ class AvailabilityController extends Controller
         $checkin = $validated['checkin'];
         $checkout = $validated['checkout'];
 
-        $available = $this->mockDataService->hotelRoomTypes()
+        $available = $this->dataService->hotelRoomTypes()
             ->filter(function ($hotelRoomType) use ($validated, $checkin, $checkout): bool {
                 $roomType = $hotelRoomType->roomType;
 
@@ -40,7 +40,7 @@ class AvailabilityController extends Controller
                     return false;
                 }
 
-                $bookings = $this->mockDataService->bookings()
+                $bookings = $this->dataService->bookings()
                     ->where('hotel', $hotelRoomType->hotel_code)
                     ->where('roomType', $hotelRoomType->room_type_code)
                     ->where('status', 'CONFIRMED')
