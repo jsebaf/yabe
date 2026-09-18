@@ -1,0 +1,13 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "yabe": {
+      "type": "local",
+      "command": [
+        ".venv/bin/python",
+        "mcp/server.py"
+      ],
+      "enabled": true
+    }
+  }
+}

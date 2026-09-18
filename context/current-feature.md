@@ -1,8 +1,41 @@
-# Feature actual
+# Conectar el MCP Server con los datos reales
 
 ## Objetivos
 
+Completar la implementación del MCP Server para que sus herramientas consulten los datos reales de la aplicación usando la misma configuración de persistencia del entorno local.
+
+### Requisitos
+
+- Sustituir los datos simulados de `get_hotels`, `get_room_types`, `get_bookings` y `get_bookings_statistics` por consultas a la persistencia real.
+- Proporcionar información suficiente para consultar los hoteles y las reservas existentes.
+- Mantener el logging de consultas y resultados en `mcp.log`.
+- Gestionar los errores de consulta y comunicarlos al cliente MCP sin terminar inesperadamente el servidor.
+
+### Criterios de aceptación
+
+- El MCP Server continúa ejecutándose localmente mediante `stdio` y puede ser utilizado por OpenCode.
+- `get_hotels` devuelve los hoteles existentes en la persistencia local de la aplicación.
+- `get_room_types` devuelve los tipos de habitación existentes en la persistencia local de la aplicación.
+- `get_bookings` devuelve las reservas existentes en la persistencia local de la aplicación.
+- `get_bookings_statistics` devuelve estadísticas calculadas a partir de los datos reales de reservas.
+- Las herramientas no utilizan datos simulados.
+- El MCP Server utiliza la configuración de acceso a la persistencia existente en el entorno local.
+- Las invocaciones de las herramientas y sus resultados continúan registrándose en `mcp/logs/mcp.log`.
+- Los mensajes del protocolo MCP continúan registrándose en `mcp/logs/protocol.log` cuando el mecanismo de captura existente lo permita.
+- Es posible utilizar OpenCode para realizar consultas en lenguaje natural cuya respuesta requiera utilizar los datos reales de la aplicación.
+
+### Fuera de alcance
+
+- Nuevas herramientas MCP distintas de las definidas en la primera iteración.
+- `resources` MCP.
+- Transporte HTTP.
+- Autenticación o autorización específica del MCP Server.
+- Análisis avanzado, generación de informes o integración con servicios o fuentes externas.
+
 ## Notas
+
+- Issue: #17
+- Issue abierta, sin labels ni comentarios al iniciar la feature.
 
 ## Histórico
 
