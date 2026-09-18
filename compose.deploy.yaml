@@ -1,0 +1,21 @@
+services:
+  app:
+    image: yabe:latest
+    ports:
+      - "8000:8000"
+    environment:
+      APP_NAME: Yabe
+      APP_ENV: production
+      APP_DEBUG: "false"
+      APP_URL: http://localhost:8000
+      DB_CONNECTION: sqlite
+      DB_DATABASE: /var/www/html/storage/app/database.sqlite
+      SESSION_DRIVER: database
+      CACHE_STORE: database
+      QUEUE_CONNECTION: database
+    volumes:
+      - yabe-data:/var/www/html/storage/app
+    restart: unless-stopped
+
+volumes:
+  yabe-data:
