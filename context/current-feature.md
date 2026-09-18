@@ -1,38 +1,12 @@
-# Dockerizar aplicación para ejecución local
+# Feature actual
 
 ## Objetivos
 
-Preparar la aplicación para ejecutarse completamente mediante Docker Compose, sin instalar PHP, Composer, Node.js ni las dependencias de la aplicación en el sistema anfitrión, dejando una base reutilizable para un futuro despliegue de la misma imagen en un VPS.
-
-### Requisitos
-
-- Crear un `Dockerfile` para construir la imagen de la aplicación.
-- Instalar las dependencias PHP mediante `composer install`.
-- Instalar las dependencias JavaScript mediante `npm ci`.
-- Construir los assets de React/Vite mediante `npm run build`.
-- Utilizar SQLite como base de datos.
-- Inicializar la base de datos mediante las migraciones y el seed de Laravel.
-- Crear un `compose.yaml` que permita levantar la aplicación con un único comando.
-- Exponer la aplicación al host mediante el puerto `8000`.
-- Ejecutar Laravel en una interfaz accesible desde fuera del contenedor.
-- Permitir eliminar y recrear el contenedor sin reconstruir manualmente el entorno.
-- Gestionar coherentemente los datos necesarios para la base de datos SQLite.
-
-### Criterios de aceptación
-
-- Desde una instalación limpia, `docker compose up --build` debe arrancar correctamente la aplicación.
-- La aplicación debe estar disponible en `http://localhost:8000`.
-- La aplicación debe disponer de la estructura de base de datos y los datos iniciales de las migraciones y el seed de Laravel.
-- Debe ser posible detener, eliminar y volver a levantar el entorno siguiendo las instrucciones documentadas.
-- La documentación debe estar en español e incluir cómo construir, arrancar, acceder, detener, eliminar y reconstruir el entorno.
-- La documentación debe explicar las decisiones relevantes sobre la persistencia de SQLite.
-
 ## Notas
 
-- Issue: #21
-- Fuera del alcance: despliegue en VPS, SSH, GitHub Actions, configuración de producción, HTTPS, PostgreSQL y servidores web externos como Nginx.
-
 ## Histórico
+
+- 2026-09-18: Dockerizada la aplicación con Dockerfile multietapa, docker-compose.yml, entrypoint idempotente y documentación en español; publicado en el Pull Request #24.
 
 - 2026-09-18: Conectado el servidor MCP con la persistencia real de Laravel, estadísticas, manejo de errores, logging de protocolo y configuración de OpenCode; publicado en el Pull Request #23.
 
