@@ -1,0 +1,59 @@
+name: Deploy to VPS
+
+on:
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build --tag yabe:latest .
+
+      - name: Export Docker image
+        run: docker save yabe:latest | gzip > yabe.tar.gz
+
+      - name: Set up SSH key
+        run: |
+          mkdir -p ~/.ssh
+          printf '%s\n' "${{ secrets.VPS_SSH_KEY }}" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H "${{ secrets.VPS_HOST }}" >> ~/.ssh/known_hosts
+
+      - name: Transfer Docker image to VPS
+        run: |
+          scp -i ~/.ssh/id_deploy \
+            yabe.tar.gz \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/yabe.tar.gz"
+
+      - name: Transfer compose file to VPS
+        run: |
+          scp -i ~/.ssh/id_deploy \
+            compose.deploy.yaml \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}:~/compose.yaml"
+
+      - name: Deploy on VPS
+        run: |
+          ssh -i ~/.ssh/id_deploy \
+            "${{ secrets.VPS_USER }}@${{ secrets.VPS_HOST }}" \
+            bash -s << 'EOF'
+          set -eu
+
+          # Load the image
+          docker load < ~/yabe.tar.gz
+
+          # Remove the transferred archive to free space
+          rm ~/yabe.tar.gz
+
+          # Bring up the application (idempotent: recreates containers on image change)
+          docker compose -f ~/compose.yaml up --detach --remove-orphans --pull never
+          EOF
+
+      - name: Clean up SSH key
+        if: always()
+        run: rm -f ~/.ssh/id_deploy
