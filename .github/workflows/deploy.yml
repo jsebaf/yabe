@@ -48,13 +48,13 @@ jobs:
           set -eu
 
           # Load the image
-          docker load < ~/yabe.tar.gz
+          sudo docker load < ~/yabe.tar.gz
 
           # Remove the transferred archive to free space
           rm ~/yabe.tar.gz
 
           # Bring up the application (idempotent: recreates containers on image change)
-          docker compose -f ~/compose.yaml up --detach --remove-orphans --pull never
+          sudo docker compose -f ~/compose.yaml up --detach --remove-orphans --pull never
           EOF
 
       - name: Clean up SSH key
