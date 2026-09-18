@@ -6,6 +6,8 @@
 
 ## Histórico
 
+- 2026-09-18: Dockerizada la aplicación con Dockerfile multietapa, docker-compose.yml, entrypoint idempotente y documentación en español; publicado en el Pull Request #24.
+
 - 2026-09-18: Conectado el servidor MCP con la persistencia real de Laravel, estadísticas, manejo de errores, logging de protocolo y configuración de OpenCode; publicado en el Pull Request #23.
 
 - 2026-09-17: Finalizada la implementación y verificación del servidor MCP local; publicada en el Pull Request #20.
