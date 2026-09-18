@@ -6,6 +6,8 @@
 
 ## Histórico
 
+- 2026-09-18: Conectado el servidor MCP con la persistencia real de Laravel, estadísticas, manejo de errores, logging de protocolo y configuración de OpenCode; publicado en el Pull Request #23.
+
 - 2026-09-17: Finalizada la implementación y verificación del servidor MCP local; publicada en el Pull Request #20.
 
 - 2026-09-17: Implementado y verificado el servidor MCP local en Python con herramientas simuladas, transporte `stdio`, logging y documentación.
