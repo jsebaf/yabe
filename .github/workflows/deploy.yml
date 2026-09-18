@@ -2,6 +2,9 @@ name: Deploy to VPS
 
 on:
   workflow_dispatch:
+  push:
+    branches:
+      - jsebaf/automatizar-el-despliegue-mediante-github-action
 
 jobs:
   deploy:
